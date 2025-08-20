@@ -49,6 +49,11 @@ api:
 build:
 	mkdir -p bin/ && go build -ldflags "-X main.Version=$(VERSION)" -o ./bin/ ./...
 
+.PHONY: run
+# run
+run: build
+	cd bin && ./limit-order-book
+
 .PHONY: generate
 # generate
 generate:

@@ -9,6 +9,13 @@ data:
   coinbase:
     api_key: "YOUR_API_KEY"
     api_secret: "YOUR_API_SECRET"
+  fix:
+    account_id: "YOUR_ACCOUNT_ID"      # SVC_ACCOUNT_ID
+    target_comp_id: "YOUR_TARGET_ID"   # TARGET_COMP_ID
+    api_key: "YOUR_API_KEY"            # API_KEY
+    api_secret: "YOUR_API_SECRET"      # API_SECRET
+    api_passphrase: "YOUR_PASSPHRASE"  # API_PASSPHRASE
+    portfolio_id: "YOUR_PORTFOLIO_ID"  # PORTFOLIO_ID
   database:
     driver: mysql
     source: root:root@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
