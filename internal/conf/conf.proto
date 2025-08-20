@@ -25,6 +25,15 @@ message Server {
   GRPC grpc = 2;
 }
 
+message Fix {
+  string account_id = 1;
+  string target_comp_id = 2;
+  string api_key = 3;
+  string api_secret = 4;
+  string api_passphrase = 5;
+  string portfolio_id = 6;
+}
+
 message Data {
   message Database {
     string driver = 1;
@@ -43,4 +52,5 @@ message Data {
   Database database = 1;
   Redis redis = 2;
   Coinbase coinbase = 3;
+  Fix fix = 4;
 }

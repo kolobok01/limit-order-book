@@ -31,8 +31,14 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	orderBookRepo := data.NewOrderBookRepo(dataData, logger)
 	orderBookUsecase := biz.NewOrderBookUsecase(orderBookRepo, logger)
 	orderBookService := service.NewOrderBookService(orderBookUsecase, logger)
-	grpcServer := server.NewGRPCServer(confServer, orderBookService, logger)
-	httpServer := server.NewHTTPServer(confServer, orderBookService, logger)
+	client, err := data.NewFIXClient(confData, logger)
+	if err != nil {
+		cleanup()
+		return nil, nil, err
+	}
+	fixService := service.NewFIXService(client)
+	grpcServer := server.NewGRPCServer(confServer, orderBookService, fixService, logger)
+	httpServer := server.NewHTTPServer(confServer, fixService, logger)
 	app := newApp(logger, grpcServer, httpServer)
 	return app, func() {
 		cleanup()
